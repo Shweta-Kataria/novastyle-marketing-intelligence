@@ -1,0 +1,9 @@
+1. Explore an Increase in Investment in High-performing Channels: Given the acceptance rates, prioritize Email, TikTok, and Catalogue campaigns as they have consistently shown the highest acceptance rates. 
+
+2. Re-assess the Current Approach on Instagram: Instagram shows the lowest acceptance rate. Consider reviewing the approach for this platform - it could be either altering the content or target demographics, or investing less in this platform compared to others.
+
+3. Increase Google Ads Spend: Despite the relatively lower acceptance rate (6.4%), Google Ads still present a substantial opportunity due to the large reach Google commands. Consider optimizing the Google Ads strategy to increase the acceptance rate.
+
+4. Focus on PhD Customers: The data shows that customers with a PhD education level tend to spend the most, so look to tailor campaigns and promotions to this demographic more specifically.
+
+5. Introduce Personalization to Improve Conversion Rates: Implement a more targeted, personalized approach to your marketing campaigns. Use the average income data to segment your customers into different groups, and tailor your messages and offerings based on these different income groups. Personalization can often lead to higher acceptance rates and maximum ROI on marketing spend.
