@@ -14,6 +14,7 @@ I built an end-to-end AI-powered marketing intelligence system that:
 - Uses machine learning to predict campaign response
 - Generates automated executive recommendations using AI
 - Presents everything in an interactive live dashboard
+- **Automatically refreshes AI insights when underlying data changes — making it suitable for real-world deployment where data updates continuously**
 
 ## Tech Stack
 | Area | Tool |

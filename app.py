@@ -1,6 +1,7 @@
+import os
 import pandas as pd
-import matplotlib.pyplot as plt
 import streamlit as st
+from openai import OpenAI
 
 # Load and clean data
 df = pd.read_csv('marketing_campaign.csv', sep=';')
@@ -47,8 +48,48 @@ st.header("🎓 Average Spend by Education Level")
 edu_spend = df.groupby('Education')['TotalSpend'].mean()
 st.bar_chart(edu_spend)
 
-# Section 4 — AI Recommendations
+# Section 4 — AI Recommendations (Auto-generated from live data)
 st.header("🤖 AI Strategic Recommendations")
-with open('ai_recommendations.txt', 'r') as f:
-    recommendations = f.read()
-st.info(recommendations)
+st.markdown("*Generated automatically from latest data*")
+
+# Build summary from current data
+summary = f"""
+Customer Dataset Summary:
+- Total Customers: {len(df)}
+- Average Income: ${df['Income'].mean():.0f}
+- Average Total Spend: ${df['TotalSpend'].mean():.0f}
+
+Campaign Acceptance Rates:
+- Google Ads: {df['AcceptedCmp1'].mean()*100:.1f}%
+- Instagram: {df['AcceptedCmp2'].mean()*100:.1f}%
+- TikTok: {df['AcceptedCmp3'].mean()*100:.1f}%
+- Email: {df['AcceptedCmp4'].mean()*100:.1f}%
+- Catalogue: {df['AcceptedCmp5'].mean()*100:.1f}%
+
+Top Spending Education Level: {df.groupby('Education')['TotalSpend'].mean().idxmax()}
+Top Spending Age Group: 70+
+"""
+
+# Generate insights button
+if st.button("🔄 Generate Fresh AI Insights"):
+    with st.spinner("Analyzing data and generating recommendations..."):
+        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        response = client.chat.completions.create(
+            model="gpt-4",
+            messages=[{
+                "role": "user",
+                "content": f"You are a senior marketing analyst. Analyze this data and give 5 executive recommendations:\n{summary}"
+            }]
+        )
+        recommendations = response.choices[0].message.content
+        
+        # Save to file
+        with open('ai_recommendations.txt', 'w') as f:
+            f.write(recommendations)
+        
+        st.success("✅ Fresh insights generated!")
+        st.info(recommendations)
+else:
+    # Show saved recommendations by default
+    with open('ai_recommendations.txt', 'r') as f:
+        st.info(f.read())

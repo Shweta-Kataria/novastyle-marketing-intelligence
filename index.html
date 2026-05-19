@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shweta Kataria — Marketing Analytics & Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0e0e0f;
+    --bg2: #141415;
+    --bg3: #1a1a1c;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0ede8;
+    --muted: #888580;
+    --accent: #c9a96e;
+    --accent2: #e8d5b0;
+    --tag-bg: rgba(201,169,110,0.1);
+    --tag-border: rgba(201,169,110,0.25);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(14,14,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* SECTIONS */
+  section { padding: 7rem 4rem; max-width: 1100px; margin: 0 auto; }
+  section + section { padding-top: 0; }
+
+  /* HERO */
+  #home {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: 8rem;
+    max-width: 1100px; margin: 0 auto; padding-left: 4rem; padding-right: 4rem;
+  }
+  .hero-label {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-label::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--accent); }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-name em { color: var(--accent); font-style: italic; }
+  .hero-sub {
+    font-size: 1.1rem; color: var(--muted); max-width: 560px;
+    line-height: 1.75; margin-bottom: 1rem;
+    font-weight: 300;
+  }
+  .hero-target {
+    font-size: 0.85rem; color: var(--accent2);
+    margin-bottom: 3rem; font-weight: 400;
+    opacity: 0.8;
+  }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-bottom: 3rem;
+    padding: 2rem 0; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.25rem; color: var(--accent); line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 500; }
+  .hero-tags { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .tag {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border: 0.5px solid var(--tag-border);
+    background: var(--tag-bg);
+    color: var(--accent2);
+    border-radius: 2rem;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: var(--accent);
+    color: #0e0e0f;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2rem;
+    transition: background 0.2s, transform 0.15s;
+    margin-right: 1rem; margin-bottom: 1rem;
+  }
+  .btn:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 0.5px solid var(--border2);
+  }
+  .btn-ghost:hover { background: var(--bg3); color: var(--text); }
+
+  /* SECTION HEADERS */
+  .section-label {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--accent); }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1; margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+  .section-body { color: var(--muted); font-weight: 300; max-width: 620px; line-height: 1.8; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
+  .about-text p { color: var(--muted); font-weight: 300; line-height: 1.85; margin-bottom: 1.25rem; }
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    padding: 1.5rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .step:first-child { border-top: 0.5px solid var(--border); }
+  .step-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem; color: var(--border2); line-height: 1;
+    min-width: 2.5rem; font-style: italic;
+  }
+  .step-title { font-size: 0.9rem; font-weight: 500; color: var(--accent2); margin-bottom: 0.25rem; letter-spacing: 0.04em; }
+  .step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+  /* TOOLS */
+  #tools { padding-top: 5rem; }
+  .tools-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .tool-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .tool-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .tool-card-title { font-size: 0.85rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; }
+  .tool-card-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; font-weight: 300; }
+  .tool-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tool-pill {
+    font-size: 0.7rem; padding: 0.2rem 0.6rem;
+    background: var(--bg3); border: 0.5px solid var(--border);
+    color: var(--muted); border-radius: 2rem;
+  }
+
+  /* PROJECTS */
+  #projects { padding-top: 5rem; }
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+  .project-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .project-card.featured {
+    grid-column: span 2;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;
+  }
+  .project-card.featured .project-card-content { }
+  .project-type {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem;
+  }
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem; line-height: 1.2; margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+  .project-sub { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.25rem; font-weight: 300; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+  .project-tag {
+    font-size: 0.7rem; padding: 0.2rem 0.65rem;
+    background: var(--tag-bg); border: 0.5px solid var(--tag-border);
+    color: var(--accent2); border-radius: 2rem; font-weight: 500;
+  }
+  .project-result {
+    font-size: 0.82rem; color: var(--accent2);
+    padding: 0.75rem 1rem;
+    background: rgba(201,169,110,0.06);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    line-height: 1.5;
+  }
+  .project-details { display: none; margin-top: 1.5rem; }
+  .project-card.open .project-details { display: block; }
+  .project-details-section { margin-bottom: 1.25rem; }
+  .project-details-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+  .project-details-text { font-size: 0.85rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+  .project-details-text ul { padding-left: 1.25rem; }
+  .project-details-text li { margin-bottom: 0.35rem; }
+  .project-expand {
+    font-size: 0.78rem; color: var(--accent); font-weight: 500;
+    background: none; border: none; cursor: pointer; padding: 0;
+    display: flex; align-items: center; gap: 0.4rem; margin-top: 1rem;
+    transition: gap 0.2s;
+  }
+  .project-expand:hover { gap: 0.65rem; }
+  .project-expand .arrow { transition: transform 0.2s; }
+  .project-card.open .project-expand .arrow { transform: rotate(90deg); }
+  .novaStyle-metrics {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .nova-metric {
+    background: var(--bg3); border: 0.5px solid var(--border);
+    border-radius: 10px; padding: 1rem;
+  }
+  .nova-metric-num { font-family: 'DM Serif Display', serif; font-size: 1.75rem; color: var(--accent); line-height: 1; margin-bottom: 0.2rem; }
+  .nova-metric-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+
+  /* ADDITIONAL */
+  .additional-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+  .additional-card {
+    background: var(--bg2); border: 0.5px solid var(--border); border-radius: 12px; padding: 1.5rem;
+  }
+  .additional-title { font-size: 0.95rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; }
+  .additional-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; font-weight: 300; margin-bottom: 0.75rem; }
+  .additional-result { font-size: 0.78rem; color: var(--accent2); font-weight: 500; }
+
+  /* CONTACT */
+  #contact {
+    padding-top: 5rem; padding-bottom: 8rem;
+    text-align: center;
+    border-top: 0.5px solid var(--border);
+  }
+  #contact .section-label { justify-content: center; }
+  #contact .section-label::before { display: none; }
+  #contact .section-title { margin: 0 auto 1rem; }
+  #contact .section-body { margin: 0 auto 3rem; text-align: center; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 1.75rem;
+    border: 0.5px solid var(--border2);
+    color: var(--muted); font-size: 0.85rem;
+    text-decoration: none; border-radius: 2rem;
+    transition: border-color 0.2s, color 0.2s;
+    font-weight: 400;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* DIVIDER */
+  .divider { width: 100%; height: 0.5px; background: var(--border); max-width: 1100px; margin: 0 auto; }
+
+  /* FADE IN */
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    section, #home { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .tools-grid { grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    .additional-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">SK</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-label">Shweta Kataria</div>
+  <h1 class="hero-name">Marketing <em>Analytics</em><br>& Strategy</h1>
+  <p class="hero-sub">I turn audience data and campaign performance into decisions that actually move the needle.</p>
+  <p class="hero-target">Currently targeting marketing analyst, growth, and lifecycle marketing roles.</p>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">350+</div>
+      <div class="stat-label">Leads in 6 hours</div>
+    </div>
+    <div>
+      <div class="stat-num">80K+</div>
+      <div class="stat-label">Data points analyzed</div>
+    </div>
+  </div>
+  <div class="hero-tags">
+    <span class="tag">Strategy</span>
+    <span class="tag">Analytics</span>
+    <span class="tag">Campaigns</span>
+    <span class="tag">Communications</span>
+  </div>
+  <div style="margin-top: 2.5rem;">
+    <a href="#projects" class="btn">View Selected Work →</a>
+    <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label fade-in">About / How I work</div>
+  <h2 class="section-title fade-in">I use analysis to find<br>the signal — and<br>communication to make<br>it useful.</h2>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p>I'm most effective when marketing needs both structured thinking and clear communication. I start by understanding what the data is actually saying — then make sure the right people understand it and can act on it.</p>
+      <p>My background spans campaign analytics, audience segmentation, lifecycle email, and performance reporting. I've worked across education, e-commerce, and nonprofit contexts, which means I adapt quickly to new industries and audiences.</p>
+    </div>
+    <div class="steps fade-in">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Define</div>
+          <div class="step-desc">Clarify the objective, the audience, and the decision that needs to be made.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Diagnose</div>
+          <div class="step-desc">Use campaign, channel, and audience data to identify patterns, drop-off points, and performance gaps.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Communicate</div>
+          <div class="step-desc">Turn findings into sharper messaging, clearer strategy, and more effective execution.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Optimize</div>
+          <div class="step-desc">Measure response, refine the system, and apply what the work reveals.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="section-label fade-in">Capabilities</div>
+  <h2 class="section-title fade-in">Tools & Platforms</h2>
+  <p class="section-body fade-in">A cross-functional toolkit spanning strategy, communication, campaign execution, and analytics.</p>
+  <div class="tools-grid">
+    <div class="tool-card fade-in">
+      <div class="tool-card-title">Campaign & Channel</div>
+      <div class="tool-card-desc">Integrated campaigns, content calendars, event promotion, social media, and community engagement.</div>
+      <div class="tool-pills">
+        <span class="tool-pill">Hootsuite</span>
+        <span class="tool-pill">Mailchimp</span>
+        <span class="tool-pill">Meta Business</span>
+      </div>
+    </div>
+    <div class="tool-card fade-in">
+      <div class="tool-card-title">Content & Comms</div>
+      <div class="tool-card-desc">Content strategy, copywriting, collateral development, campaign assets, and visual coordination.</div>
+      <div class="tool-pills">
+        <span class="tool-pill">Canva</span>
+        <span class="tool-pill">Adobe Suite</span>
+      </div>
+    </div>
+    <div class="tool-card fade-in">
+      <div class="tool-card-title">CRM & Operations</div>
+      <div class="tool-card-desc">Audience segmentation, workflow management, campaign coordination, and stakeholder collaboration.</div>
+      <div class="tool-pills">
+        <span class="tool-pill">Salesforce</span>
+        <span class="tool-pill">Airtable</span>
+        <span class="tool-pill">Mailchimp</span>
+      </div>
+    </div>
+    <div class="tool-card fade-in">
+      <div class="tool-card-title">Analytics & Reporting</div>
+      <div class="tool-card-desc">Performance analysis, dashboarding, KPI tracking, survey analysis, and A/B testing.</div>
+      <div class="tool-pills">
+        <span class="tool-pill">GA4</span>
+        <span class="tool-pill">SQL</span>
+        <span class="tool-pill">Tableau</span>
+        <span class="tool-pill">Excel</span>
+        <span class="tool-pill">Adobe Analytics</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label fade-in">Selected Work</div>
+  <h2 class="section-title fade-in">Projects</h2>
+
+  <div class="projects-grid">
+
+    <!-- NovaStyle — FEATURED -->
+    <div class="project-card featured fade-in" id="card-nova">
+      <div class="project-card-content">
+        <div class="project-type">AI / Machine Learning / Analytics</div>
+        <h3 class="project-title">NovaStyle AI Marketing Intelligence System</h3>
+        <p class="project-sub">Built an end-to-end AI-powered analytics system that predicts campaign response, identifies underperforming channels, and generates executive recommendations automatically.</p>
+        <div class="project-tags">
+          <span class="project-tag">Python</span>
+          <span class="project-tag">Scikit-learn</span>
+          <span class="project-tag">OpenAI API</span>
+          <span class="project-tag">Streamlit</span>
+          <span class="project-tag">Pandas</span>
+        </div>
+        <div class="project-result">86% ML model accuracy — Random Forest Classifier predicting customer campaign response across 5 channels.</div>
+        <div style="display:flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.25rem;">
+          <button class="project-expand" onclick="toggleCard('card-nova')">
+            Read case study <span class="arrow">→</span>
+          </button>
+          <a href="https://github.com/Shweta-Kataria/novastyle-marketing-intelligence" target="_blank" class="btn btn-ghost" style="font-size:0.78rem; padding: 0.5rem 1.25rem; border-radius: 2rem;">View on GitHub ↗</a>
+        </div>
+        <div class="project-details">
+          <div class="project-details-section">
+            <div class="project-details-label">The Problem</div>
+            <div class="project-details-text">NovaStyle was spending on ads without clarity on what was working. Rising acquisition costs, low campaign acceptance rates, and no reliable view of customer behavior made budget allocation essentially guesswork.</div>
+          </div>
+          <div class="project-details-section">
+            <div class="project-details-label">What I Built</div>
+            <div class="project-details-text"><ul>
+              <li>Analyzed customer behavior across 5 marketing channels and calculated advanced KPIs</li>
+              <li>Trained a Random Forest Classifier (86% accuracy) to predict which customers would respond to campaigns</li>
+              <li>Integrated the OpenAI API to auto-generate 5 executive-level strategic recommendations from the data</li>
+              <li>Packaged everything into a live interactive Streamlit dashboard</li>
+            </ul></div>
+          </div>
+          <div class="project-details-section">
+            <div class="project-details-label">Key Findings</div>
+            <div class="project-details-text"><ul>
+              <li>Email had the highest campaign acceptance rate</li>
+              <li>Instagram significantly underperformed all other channels</li>
+              <li>Customers aged 60+ are the highest-value segment</li>
+              <li>Total spend and recency are the strongest predictors of response</li>
+            </ul></div>
+          </div>
+          <div class="project-details-section">
+            <div class="project-details-label">Business Impact</div>
+            <div class="project-details-text">Identified Instagram as a budget drain — recommended reallocation toward Email and TikTok. Predictive model enables targeting based on likelihood to respond, saving wasted spend. AI-generated recommendations give non-technical stakeholders instant strategic direction.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="novaStyle-metrics">
+          <div class="nova-metric">
+            <div class="nova-metric-num">86%</div>
+            <div class="nova-metric-label">ML Accuracy</div>
+          </div>
+          <div class="nova-metric">
+            <div class="nova-metric-num">5</div>
+            <div class="nova-metric-label">Channels Analyzed</div>
+          </div>
+          <div class="nova-metric">
+            <div class="nova-metric-num">5</div>
+            <div class="nova-metric-label">AI Recommendations</div>
+          </div>
+          <div class="nova-metric">
+            <div class="nova-metric-num">3</div>
+            <div class="nova-metric-label">Top Predictive Features</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- E-Commerce -->
+    <div class="project-card fade-in" id="card-ecom">
+      <div class="project-type">Analytics / GA4</div>
+      <h3 class="project-title">E-Commerce Retention Analysis</h3>
+      <p class="project-sub">Android traffic dropped 31% while revenue grew — revealing a retention risk hidden beneath strong top-line performance.</p>
+      <div class="project-tags">
+        <span class="project-tag">GA4</span>
+        <span class="project-tag">Excel</span>
+        <span class="project-tag">Data Analysis</span>
+      </div>
+      <div class="project-result">Identified mobile retention weakness masked by revenue growth — recommended fixing engagement before scaling acquisition.</div>
+      <button class="project-expand" onclick="toggleCard('card-ecom')">Read case study <span class="arrow">→</span></button>
+      <div class="project-details">
+        <div class="project-details-section">
+          <div class="project-details-label">Overview</div>
+          <div class="project-details-text">Strong top-line revenue masked a quieter problem: returning users were declining. The data suggested the business was growing on the surface while losing its most valuable customers underneath.</div>
+        </div>
+        <div class="project-details-section">
+          <div class="project-details-label">What I Did</div>
+          <div class="project-details-text">Analyzed acquisition, engagement, and device-level performance in GA4 and Excel. Compared returning-user behavior across platforms and channels to pinpoint where drop-off was happening.</div>
+        </div>
+        <div class="project-details-section">
+          <div class="project-details-label">Key Finding</div>
+          <div class="project-details-text">Android traffic had declined ~31% year-over-year, alongside lower engagement time on mobile — a likely mobile experience issue that revenue figures alone would never surface.</div>
+        </div>
+        <div class="project-details-section">
+          <div class="project-details-label">Recommendation</div>
+          <div class="project-details-text">Fix mobile retention before pushing acquisition further. Growth built on a leaky mobile experience compounds the problem — it doesn't solve it.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mental Health -->
+    <div class="project-card fade-in" id="card-mh">
+      <div class="project-type">Data Analysis / Tableau</div>
+      <h3 class="project-title">Student Mental Health Trends Analysis</h3>
+      <p class="project-sub">80,000+ records across 4 years — and a finding that challenged the assumption that more support equals better outcomes.</p>
+      <div class="project-tags">
+        <span class="project-tag">Tableau</span>
+        <span class="project-tag">Excel</span>
+        <span class="project-tag">Longitudinal Analysis</span>
+      </div>
+      <div class="project-result">Therapy and medication usage increased post-pandemic, but academic impairment remained high — support access alone wasn't producing recovery.</div>
+      <button class="project-expand" onclick="toggleCard('card-mh')">Read case study <span class="arrow">→</span></button>
+      <div class="project-details">
+        <div class="project-details-section">
+          <div class="project-details-label">What I Did</div>
+          <div class="project-details-text">Standardized multi-year datasets in Excel, aligned inconsistent variables, and built Tableau dashboards tracking depression, anxiety, suicidal ideation, therapy usage, medication usage, and academic impairment over time.</div>
+        </div>
+        <div class="project-details-section">
+          <div class="project-details-label">Key Findings</div>
+          <div class="project-details-text">Mental health indicators peaked during the pandemic and stayed elevated afterward. Therapy and medication usage increased — but academic impairment remained high in post-pandemic periods.</div>
+        </div>
+        <div class="project-details-section">
+          <div class="project-details-label">Recommendations</div>
+          <div class="project-details-text"><ul>
+            <li>Earlier intervention before crisis points</li>
+            <li>Peer-support models to complement clinical services</li>
+            <li>Academic accommodation frameworks accounting for lingering mental health impact</li>
+          </ul></div>
+        </div>
+        <div class="project-details-section">
+          <div class="project-details-label">Why It Mattered</div>
+          <div class="project-details-text">More support isn't always better support. This reframed the conversation from "are we providing enough resources" to "are the right resources reaching students at the right time."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eclipse -->
+    <div class="project-card fade-in" id="card-eclipse">
+      <div class="project-type">Campaign / Live Activation</div>
+      <h3 class="project-title">Total Solar Eclipse Activation</h3>
+      <p class="project-sub">Turned a rare public moment into 350+ qualified leads — with zero design budget.</p>
+      <div class="project-tags">
+        <span class="project-tag">Lead Generation</span>
+        <span class="project-tag">Event Marketing</span>
+        <span class="project-tag">Campaign Design</span>
+      </div>
+      <div class="project-result">350+ leads captured in 6 hours. $0 design cost. Live brand activation converting foot traffic to email subscribers via QR codes.</div>
+      <button class="project-expand" onclick="toggleCard('card-eclipse')">Read case study <span class="arrow">→</span></button>
+      <div class="project-details">
+        <div class="project-details-section">
+          <div class="project-details-label">The Challenge</div>
+          <div class="project-details-text">The eclipse created a rare, high-attention public moment. The challenge was converting that attention into meaningful engagement without disrupting the experience itself.</div>
+        </div>
+        <div class="project-details-section">
+          <div class="project-details-label">What I Did</div>
+          <div class="project-details-text">Built a "Selfie Station" incentive to convert foot traffic into digital leads. Used QR codes to bridge on-site participation with email database growth. Handled concept development, promotional design, and participation flow.</div>
+        </div>
+        <div class="project-details-section">
+          <div class="project-details-label">Why It Worked</div>
+          <div class="project-details-text">Timely, visually clear, and easy to enter — translating curiosity into participation and participation into measurable interest.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ShineInQuarantine -->
+    <div class="project-card fade-in" id="card-shine">
+      <div class="project-type">Social Campaign / Community</div>
+      <h3 class="project-title">#ShineInQuarantine</h3>
+      <p class="project-sub">Community-led content campaign that turned a disconnected moment into sustained engagement and user-generated storytelling.</p>
+      <div class="project-tags">
+        <span class="project-tag">Social Media</span>
+        <span class="project-tag">UGC</span>
+        <span class="project-tag">Community</span>
+      </div>
+      <div class="project-result">30% increase in followers. Strong UGC pipeline. Re-engaged alumni and created reusable content for future marketing.</div>
+      <button class="project-expand" onclick="toggleCard('card-shine')">Read case study <span class="arrow">→</span></button>
+      <div class="project-details">
+        <div class="project-details-section">
+          <div class="project-details-label">The Challenge</div>
+          <div class="project-details-text">During quarantine, the university community was physically disconnected and regular campus activity had paused. The goal was to give students, faculty, staff, and alumni a way to participate and stay connected.</div>
+        </div>
+        <div class="project-details-section">
+          <div class="project-details-label">What I Did</div>
+          <div class="project-details-text">Launched #ShineInQuarantine as an open call to share what the community was creating, learning, and doing. Collected submissions across paintings, singing videos, dance, poetry, and creative work — turning individual participation into an ongoing content stream.</div>
+        </div>
+        <div class="project-details-section">
+          <div class="project-details-label">Why It Worked</div>
+          <div class="project-details-text">Low barrier to participation, meaningful visibility during a disconnected period. Turned individual creativity into collective participation and gave the university a more human, community-led content stream.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Graduation -->
+    <div class="project-card fade-in" id="card-grad">
+      <div class="project-type">Experience Design / Campaign</div>
+      <h3 class="project-title">Graduation Connection Experience</h3>
+      <p class="project-sub">Built a pre-convocation experience that helped 800+ graduates feel recognized and celebrated during a fully remote graduation season.</p>
+      <div class="project-tags">
+        <span class="project-tag">Experience Design</span>
+        <span class="project-tag">Community</span>
+        <span class="project-tag">Event</span>
+      </div>
+      <div class="project-result">800+ graduates supported. 250+ organic shares. 50+ unsolicited positive emails from students and families.</div>
+      <button class="project-expand" onclick="toggleCard('card-grad')">Read case study <span class="arrow">→</span></button>
+      <div class="project-details">
+        <div class="project-details-section">
+          <div class="project-details-label">The Challenge</div>
+          <div class="project-details-text">Students had missed the in-person experiences that usually surround graduation — farewell events, department celebrations, time with friends and faculty. Convocation was still happening, but the surrounding emotional experience wasn't.</div>
+        </div>
+        <div class="project-details-section">
+          <div class="project-details-label">What I Did</div>
+          <div class="project-details-text">Coordinated personalized graduation boxes with a "Pat on the Back" keepsake, customized cookies, graduation props, caps, and an invitation to the online convocation. Supported a virtual batch meetup with department breakout rooms.</div>
+        </div>
+        <div class="project-details-section">
+          <div class="project-details-label">Why It Worked</div>
+          <div class="project-details-text">Addressed the emotional gap around remote graduation by combining a thoughtful physical package with a shared virtual moment — helping students feel more connected and included.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ADDITIONAL -->
+  <div style="margin-top: 3rem;">
+    <div class="section-label fade-in" style="margin-bottom: 1.5rem;">Additional</div>
+    <div class="additional-grid">
+      <div class="additional-card fade-in">
+        <div class="additional-title">Valentine's Day Social Campaign</div>
+        <div class="additional-desc">Social-first engagement campaign built around tagging, story mentions, and a raffle incentive to encourage peer appreciation on Instagram.</div>
+        <div class="additional-result">100+ story mentions · 25% increase in engagement</div>
+      </div>
+      <div class="additional-card fade-in">
+        <div class="additional-title">Science-Themed Campus Activation</div>
+        <div class="additional-desc">On-campus activation with simple participation mechanics and visual touchpoints that encouraged students to stop, engage, and share the experience.</div>
+        <div class="additional-result">200+ participants · 25% increase in engagement</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title">Let's Connect</h2>
+  <p class="section-body">I'm currently exploring opportunities in marketing analytics, strategy, communications, and audience-focused roles. Always happy to talk.</p>
+  <div class="contact-links">
+    <a href="mailto:kshwetakataria@gmail.com" class="contact-link">✉ kshwetakataria@gmail.com</a>
+    <a href="https://www.linkedin.com/in/shwetakataria2510/" target="_blank" class="contact-link">LinkedIn ↗</a>
+    <a href="https://github.com/Shweta-Kataria" target="_blank" class="contact-link">GitHub ↗</a>
+    <a href="tel:+14697134409" class="contact-link">+1 469 713 4409</a>
+  </div>
+</section>
+
+<script>
+  function toggleCard(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
