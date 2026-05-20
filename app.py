@@ -70,7 +70,7 @@ with tab2:
     seg_summary['Recommended Action'] = seg_summary['Segment'].map(actions)
     seg_summary = seg_summary.sort_values('Customers', ascending=False)
     seg_summary.columns = ['Segment', 'Customers', 'Avg Spend ($)', 'Avg Recency (days)', 'Avg Purchases', 'Recommended Action']
-    st.dataframe(seg_summary, use_container_width=True, hide_index=True)
+    st.dataframe(seg_summary, width="stretch", hide_index=True)
 with tab3:
     st.subheader("AI Strategic Recommendations")
     st.markdown("*Generated automatically from live campaign and customer data*")
