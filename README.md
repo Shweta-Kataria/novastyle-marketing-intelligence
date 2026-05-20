@@ -13,7 +13,8 @@ I built an end-to-end AI-powered marketing intelligence system that:
 - Calculates advanced marketing KPIs
 - Uses machine learning to predict campaign response
 - Generates automated executive recommendations using AI
-- Presents everything in an interactive live dashboard
+- Presents everything in an interactive live dashboard with 3 tabs
+- Segments all 2,240 customers into RFM lifecycle groups (Champions, Loyal, At Risk, Lost, New) with recommended marketing actions per segment
 - **Automatically refreshes AI insights when underlying data changes — making it suitable for real-world deployment where data updates continuously**
 
 ## Tech Stack
