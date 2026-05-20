@@ -12,6 +12,7 @@ df['AgeGroup'] = pd.cut(df['Age'], bins=[18,30,40,50,60,70,100], labels=['18-30'
 df['R_Score'] = pd.qcut(df['Recency'], q=5, labels=[5,4,3,2,1]).astype(int)
 df['F_Score'] = pd.qcut(df['TotalPurchases'].rank(method='first'), q=5, labels=[1,2,3,4,5]).astype(int)
 df['M_Score'] = pd.qcut(df['TotalSpend'].rank(method='first'), q=5, labels=[1,2,3,4,5]).astype(int)
+
 def segment(row):
     r, f, m = row['R_Score'], row['F_Score'], row['M_Score']
     if r >= 4 and f >= 4 and m >= 4:
@@ -37,12 +38,38 @@ st.markdown("*AI-powered marketing analytics dashboard*")
 st.divider()
 
 tab1, tab2, tab3 = st.tabs(["Overview", "Customer Segments", "AI Insights"])
+
 with tab1:
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Total Customers", f"{len(df):,}")
     col2.metric("Avg Customer Spend", f"${df['TotalSpend'].mean():.0f}")
     col3.metric("Avg Income", f"${df['Income'].mean():.0f}")
     col4.metric("Campaign Response Rate", f"{df['Response'].mean()*100:.1f}%")
+    st.divider()
+    st.subheader("Campaign Performance by Channel")
+    col_left, col_right = st.columns(2)
+    with col_left:
+        st.markdown("**Campaign Acceptance Rate by Channel**")
+        campaign_data = pd.DataFrame({
+            'Channel': ['Google Ads', 'Instagram', 'TikTok', 'Email', 'Catalogue'],
+            'Acceptance Rate': [
+                df['AcceptedCmp1'].mean()*100,
+                df['AcceptedCmp2'].mean()*100,
+                df['AcceptedCmp3'].mean()*100,
+                df['AcceptedCmp4'].mean()*100,
+                df['AcceptedCmp5'].mean()*100
+            ]
+        }).set_index('Channel')
+        st.bar_chart(campaign_data)
+    with col_right:
+        st.markdown("**Average Spend by Education Level**")
+        edu_spend = df.groupby('Education')['TotalSpend'].mean().sort_values(ascending=False)
+        st.bar_chart(edu_spend)
+    st.divider()
+    st.subheader("Spend by Age Group")
+    age_spend = df.groupby('AgeGroup', observed=True)['TotalSpend'].mean()
+    st.bar_chart(age_spend)
+
 with tab2:
     st.subheader("Customer Segmentation — RFM Analysis")
     st.markdown("*Customers scored on Recency, Frequency, and Monetary value.*")
@@ -70,7 +97,8 @@ with tab2:
     seg_summary['Recommended Action'] = seg_summary['Segment'].map(actions)
     seg_summary = seg_summary.sort_values('Customers', ascending=False)
     seg_summary.columns = ['Segment', 'Customers', 'Avg Spend ($)', 'Avg Recency (days)', 'Avg Purchases', 'Recommended Action']
-    st.dataframe(seg_summary, width="stretch", hide_index=True)
+    st.dataframe(seg_summary, hide_index=True)
+
 with tab3:
     st.subheader("AI Strategic Recommendations")
     st.markdown("*Generated automatically from live campaign and customer data*")
