@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import streamlit as st
 import numpy as np
-from scipy import stats
+from statsmodels.stats.proportion import proportions_ztest
 
 df = pd.read_csv('marketing_campaign.csv', sep=';')
 df['Income'] = df['Income'].fillna(df['Income'].median())
@@ -130,7 +130,7 @@ with tab3:
     count_a = opens_a.sum()
     count_b = opens_b.sum()
 
-    z_stat, p_value = stats.proportions_ztest([count_a, count_b], [n_a, n_b])
+    z_stat, p_value = proportions_ztest([count_a, count_b], [n_a, n_b])
     significant = p_value < 0.05
     lift = ((rate_b - rate_a) / rate_a) * 100
 
