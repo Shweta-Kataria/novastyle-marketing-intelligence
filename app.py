@@ -138,7 +138,7 @@ with tab3:
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Variant A Open Rate", f"{rate_a*100:.1f}%")
     col2.metric("Variant B Open Rate", f"{rate_b*100:.1f}%", f"+{lift:.1f}% lift")
-    col3.metric("P-Value", f"{p_value:.4f}")
+    col3.metric("P-Value", f"{p_value:.4f}" if p_value >= 0.0001 else "< 0.0001")
     col4.metric("Significant?", "Yes ✅" if significant else "No ❌")
 
     st.divider()
