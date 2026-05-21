@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 import streamlit as st
+import numpy as np
+from scipy import stats
 
 df = pd.read_csv('marketing_campaign.csv', sep=';')
 df['Income'] = df['Income'].fillna(df['Income'].median())
@@ -37,7 +39,7 @@ st.title("NovaStyle Marketing Intelligence System")
 st.markdown("*AI-powered marketing analytics dashboard*")
 st.divider()
 
-tab1, tab2, tab3 = st.tabs(["Overview", "Customer Segments", "AI Insights"])
+tab1, tab2, tab3, tab4 = st.tabs(["Overview", "Customer Segments", "A/B Test", "AI Insights"])
 
 with tab1:
     col1, col2, col3, col4 = st.columns(4)
@@ -100,6 +102,83 @@ with tab2:
     st.dataframe(seg_summary, hide_index=True)
 
 with tab3:
+    st.subheader("A/B Test Simulation — Email Subject Lines")
+    st.markdown("*Simulating a split test across two email subject line variants using real customer segments as the audience base.*")
+    st.divider()
+
+    st.markdown("### Test Setup")
+    col_a, col_b = st.columns(2)
+    with col_a:
+        st.info("**Variant A**\n\n'Exclusive offer just for you'")
+    with col_b:
+        st.info("**Variant B**\n\n'Your favorites are back in stock'")
+
+    st.divider()
+
+    np.random.seed(42)
+    n_a = 500
+    n_b = 500
+    open_rate_a = 0.24
+    open_rate_b = 0.31
+
+    opens_a = np.random.binomial(1, open_rate_a, n_a)
+    opens_b = np.random.binomial(1, open_rate_b, n_b)
+
+    rate_a = opens_a.mean()
+    rate_b = opens_b.mean()
+
+    count_a = opens_a.sum()
+    count_b = opens_b.sum()
+
+    z_stat, p_value = stats.proportions_ztest([count_a, count_b], [n_a, n_b])
+    significant = p_value < 0.05
+    lift = ((rate_b - rate_a) / rate_a) * 100
+
+    st.markdown("### Results")
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("Variant A Open Rate", f"{rate_a*100:.1f}%")
+    col2.metric("Variant B Open Rate", f"{rate_b*100:.1f}%", f"+{lift:.1f}% lift")
+    col3.metric("P-Value", f"{p_value:.4f}")
+    col4.metric("Significant?", "Yes ✅" if significant else "No ❌")
+
+    st.divider()
+
+    results_df = pd.DataFrame({
+        'Variant': ['A — Exclusive offer just for you', 'B — Your favorites are back in stock'],
+        'Emails Sent': [n_a, n_b],
+        'Opens': [int(count_a), int(count_b)],
+        'Open Rate': [f"{rate_a*100:.1f}%", f"{rate_b*100:.1f}%"]
+    })
+    st.dataframe(results_df, hide_index=True)
+
+    st.divider()
+
+    st.markdown("### Interpretation")
+    if significant:
+        winner = "B" if rate_b > rate_a else "A"
+        winning_line = "'Your favorites are back in stock'" if winner == "B" else "'Exclusive offer just for you'"
+        st.success(f"""
+        **Variant {winner} wins** — {winning_line}
+
+        The difference in open rates is statistically significant (p = {p_value:.4f}, below the 0.05 threshold).
+        This means the result is very unlikely to be due to random chance.
+
+        **Recommendation:** Roll out Variant {winner} to the full customer base.
+        Estimated impact: +{lift:.1f}% improvement in email open rates.
+        """)
+    else:
+        st.warning("No statistically significant difference detected. Run the test longer or increase sample size before making a decision.")
+
+    st.divider()
+    st.markdown("### What This Means for NovaStyle")
+    st.markdown("""
+    - **Personalization language** ("your favorites") outperforms generic offer framing
+    - A/B testing subject lines before full rollout prevents wasted spend on underperforming copy
+    - At NovaStyle's campaign response rate of 14.9%, even a small open rate improvement compounds significantly across 2,240+ customers
+    - This methodology applies directly to the Email channel — identified as NovaStyle's highest performing acquisition channel
+    """)
+
+with tab4:
     st.subheader("AI Strategic Recommendations")
     st.markdown("*Generated automatically from live campaign and customer data*")
     if st.button("Generate Fresh AI Insights"):
