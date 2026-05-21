@@ -118,7 +118,7 @@ with tab3:
     np.random.seed(42)
     n_a = 500
     n_b = 500
-    open_rate_a = 0.24
+    open_rate_a = 0.22
     open_rate_b = 0.31
 
     opens_a = np.random.binomial(1, open_rate_a, n_a)
