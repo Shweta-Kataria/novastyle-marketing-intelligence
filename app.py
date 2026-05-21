@@ -116,8 +116,8 @@ with tab3:
     st.divider()
 
     np.random.seed(42)
-    n_a = 500
-    n_b = 500
+    n_a = 1000
+    n_b = 1000
     open_rate_a = 0.22
     open_rate_b = 0.31
 
